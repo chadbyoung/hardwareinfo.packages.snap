@@ -8,23 +8,16 @@ grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
 
 apps:
-    lsusb:
-        command: usr/bin/hwinfo
+    hwinfo:
+        command: usr/sbin/hwinfo
         plugs: [hardware-observe]
 
 parts:
     hwinfo:
-#        source: http://archive.ubuntu.com/ubuntu/pool/universe/h/hwinfo/hwinfo_21.23.orig.tar.gz
-        source: https://launchpad.net/ubuntu/+archive/primary/+files/hwinfo_21.38.orig.tar.gz
-        source-type: tar
-        plugin: make
-        make-parameters: [hwinfo]
-#        stage-packages:
-#          - libhd-dev
-#          - libhd-doc
-#          - libhd21
+        plugin: dump
+        source: .
+        stage-packages:
+           - hwinfo
         build-packages:
-          - libhd-dev
-          - libhd-doc
-          - libhd21
+           - hwinfo
 
